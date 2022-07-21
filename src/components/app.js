@@ -1,20 +1,24 @@
-import React from 'react';
-import { BiUser } from "react-icons/fa";
-import Home from './Home';
-import Books from './Books';
-import NavBar from './navigation/NavBar';
-import Profile from './Profile';
-import '../style/main.scss';
-
-
+import React from "react";
+import Home from "./Home";
+import Books from "./Books";
+import NavBar from "./navigation/NavBar";
+import Profile from "./Profile";
+import { useRoutes } from "hookrouter";
+import "../style/main.scss";
 
 function App() {
+  const routes = {
+    "/": () => <Home />,
+    "/books": () => <Books />,
+    "/profile": () => <Profile />,
+  };
+
+  const routeResult = useRoutes(routes);
+
   return (
-    <div className= "app-wrapper">
+    <div className="app-wrapper">
       <NavBar />
-      <Home />
-      <Books />
-      <Profile />
+      {routeResult}
     </div>
   );
 }
